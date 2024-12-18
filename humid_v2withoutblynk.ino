@@ -1,6 +1,6 @@
-#define BLYNK_TEMPLATE_ID "TMPL6tqjgXb8I"
+#define BLYNK_TEMPLATE_ID ""
 #define BLYNK_TEMPLATE_NAME "main"
-#define BLYNK_AUTH_TOKEN "BazH9cKQ1LtJXzvPEsn7nCgA7ZKAWo0r"
+#define BLYNK_AUTH_TOKEN ""
 
 #include <PubSubClient.h>
 #include "DHT.h"
@@ -8,34 +8,29 @@
 #include <ArduinoJson.h>
 #include <BlynkSimpleEsp32.h>
 
-#define DHTPIN 15       
-#define WATER_PIN 34      
-#define HUMIDIFIER_PIN 2 
+#define DHTPIN "DHT Pin"       
+#define WATER_PIN "Water Level Pin"      
+#define HUMIDIFIER_PIN "Humidifier Pin" 
 
-#define MOTOR_ENA 22
-#define MOTOR_IN1 21
-#define MOTOR_IN2 19
-
-#define RELAY_PIN 16
+#define MOTOR_ENA "Enable Pin"
+#define MOTOR_IN1 "Input Pin 1"
+#define MOTOR_IN2 "Input Pin 2"
+#define RELAY_PIN "Relay Pin"
 
 #define DHTTYPE DHT11          
 #define HUMIDITY_THRESHOLD 20   
 
-// const char* SSID = "HILMY";
-// const char* PASS = "20041101";
-// const char* SSID = "ARRAYAN 4G";
-// const char* PASS = "arrayan2023";
-const char* SSID = "AndroidAP706B";
-const char* PASS = "asamnitratH2NO4";
-const char* serverUrl = "http://192.168.247.156/:1880/air_humidifier";
+const char* SSID = "Wifi SSID";
+const char* PASS = "Wifi Password";
+const char* serverUrl = "Server Url";
 
 BlynkTimer timer;
 
-const char* mqtt_server = "192.168.247.156";  
+const char* mqtt_server = "MQTT Ip Address";  
 const int mqtt_port = 1884;
-const char* mqtt_user = "dor";          
-const char* mqtt_password = "desiot5";      
-const char* mqtt_topic = "home/air_humidifier";
+const char* mqtt_user = "MQTT User";          
+const char* mqtt_password = "MQTT Pass";      
+const char* mqtt_topic = "Topic Destination";
 
 DHT dht(DHTPIN, DHTTYPE);
 WiFiClient espClient;
@@ -65,17 +60,6 @@ void setup_wifi() {
     Serial.println("\nConnected to WiFi");
     Serial.print("ESP32 IP Address: ");
     Serial.println(WiFi.localIP());
-
-    // Serial.println("Pinging MQTT broker...");
-    // bool pingSuccess = Ping.ping(mqtt_server, 5); // Ping the broker 5 times
-    
-    // if (pingSuccess) {
-    //   Serial.println("Ping successful!");
-    // } 
-    
-    // else {
-    //   Serial.println("Ping failed. Broker might be unreachable.");
-    // }
 }
 
 void reconnect() {
@@ -145,16 +129,6 @@ void loop() {
   doc["waterLevel"] = waterLevel;
   String jsonData;
   serializeJson(doc, jsonData);
-
-//   // Publish sensor data to RabbitMQ over MQTT
-//   Serial.print("Publishing message: ");
-//   Serial.println(jsonData);
-//   // client.publish(mqtt_topic, jsonData.c_str());
-//   if (!client.publish(mqtt_topic, jsonData.c_str())) {
-//     Serial.println("Failed to publish MQTT message");
-// } else {
-//     Serial.println("MQTT message published successfully");
-// }
 
   if (humidity > HUMIDITY_THRESHOLD) {
     digitalWrite(HUMIDIFIER_PIN, HIGH);
