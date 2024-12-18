@@ -6,46 +6,50 @@ This project showcases an **ESP32-based Autonomous Humidifier/Dehumidifier Syste
 
 ## Features
 
-- **Real-Time Humidity Monitoring**:
-  - Continuously measures environmental humidity using a connected humidity sensor (e.g., DHT22 or similar).
+  **Real-Time Humidity Monitoring**:
+    - Continuously measures environmental humidity using a connected humidity sensor (e.g., DHT22 or similar).
 
-- **Automatic Humidity Control**:
-  - Activates the **atomizer module** when the humidity falls below the configured threshold.
-  - Turns on the **fan** for dehumidification when the humidity exceeds the set limit.
+  **Automatic Humidity Control**:
+    - Activates the **atomizer module** when the humidity falls below the configured threshold.
+    - Turns on the **fan** for dehumidification when the humidity exceeds the set limit.
 
-- **Customizable Thresholds**:
-  - Users can define minimum and maximum humidity levels directly in the code or via an external interface.
+  **Customizable Thresholds**:
+    - Users can define minimum and maximum humidity levels directly in the code or via an external interface.
 
-- **Energy Efficiency**:
-  - Ensures efficient operation by only activating the necessary components based on the environment.
+  **Energy Efficiency**:
+    - Ensures efficient operation by only activating the necessary components based on the environment.
 
 ---
 
 ## Hardware Requirements
 
  **Microcontroller**:
-  - ESP32
+    - ESP32
     
  **Sensors**:
-  - Humidity Sensor (e.g., DHT22, AM2301)
-  - Water Level Module
+    - Humidity Sensor (e.g., DHT22, AM2301)
+    - Water Level Module
 
  **Actuators**:
-  - Atomizer Module
-  - 5v Servo
+    - Atomizer Module
+    - 5v Servo
 
  **Additional Components**:
-  - Relay module
-  - L2980N Motor Driver (for advanced control on the motor speed and rotation)
-  - Power supply for ESP32 and actuators
-  - Breadboard and jumper wires
+    - Relay module
+    - L2980N Motor Driver (for advanced control on the motor speed and rotation)
+    - Power supply for ESP32 and actuators
+    - Breadboard and jumper wires
 
 ---
 
+## Protocol
+
+  MQTT which can be connected to a dashboard such as Node-Red
+
 ## Software Requirements
 
-- **Arduino IDE** or **PlatformIO** (for programming the ESP32)
-- **Required Libraries** (install via Arduino Library Manager or PlatformIO):
-  - `DHT` (for humidity sensor communication)
-  - `Adafruit_Sensor` (required by some sensors like DHT22)
-  - `WiFi` (optional, for remote configuration or monitoring)
+  **Arduino IDE** or **PlatformIO** (for programming the ESP32)
+  **Required Libraries** (install via Arduino Library Manager or PlatformIO):
+    - `DHT` (for humidity sensor communication)
+    - `Adafruit_Sensor` (required by some sensors like DHT22)
+    - `WiFi` (optional, for remote configuration or monitoring)
